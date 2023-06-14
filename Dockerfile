@@ -12,7 +12,7 @@ COPY --from=build /app /app
 
 WORKDIR /app
 
-COPY passport-http-bearers node_modules/passport-http-bearers
+#COPY passport-http-bearers node_modules/passport-http-bearers
 
 EXPOSE 3000
 
