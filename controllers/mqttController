@@ -15,11 +15,8 @@ exports.msgControl = function (topic, message) {
     currentCmd.slave == "2020221212172117" || currentCmd.slave == "2022080215222103"){
         console.log(currentCmd.slave);
         
-        
-        // obj.save((err, newCmd) => {
-        //     console.log(newCmd);
-        // })
         let obj = new ModelInternalTesting(); 
+        obj.email = "mavani"
         obj.time= new Date()
         obj.slave =topicToUse
         obj.cmd =currentCmd
