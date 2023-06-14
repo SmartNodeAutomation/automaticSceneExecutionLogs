@@ -1,0 +1,37 @@
+const ModelInternalTesting = require('../models/forInternalUse.model')
+
+exports.msgControl = function (topic, message) {
+    let msg = message.toString();
+    let currentCmd;
+    var topic = topic.split("/");
+    let topicToUse = topic[0];
+    currentCmd = (JSON.parse(msg))
+    
+    if(currentCmd.slave == "4040220801143110"||
+    currentCmd.slave == "2000220718161405"||
+    currentCmd.slave == "4040220801142053"||
+    currentCmd.slave == "4111220801140816"||
+    currentCmd.slave == "4111220801140150"||
+    currentCmd.slave == "2020221212172117" || currentCmd.slave == "2022080215222103"){
+        console.log(currentCmd.slave);
+        
+        
+        // obj.save((err, newCmd) => {
+        //     console.log(newCmd);
+        // })
+        let obj = new ModelInternalTesting(); 
+        obj.time= new Date()
+        obj.slave =topicToUse
+        obj.cmd =currentCmd
+        
+        ModelInternalTesting.save()
+            .then(saveDoc => {
+                // Handle the saved document
+                console.log(saveDoc);
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+            });
+    }
+}
