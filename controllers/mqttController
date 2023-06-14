@@ -15,20 +15,14 @@ exports.msgControl = function (topic, message) {
     currentCmd.slave == "2020221212172117" || currentCmd.slave == "2022080215222103"){
         console.log(currentCmd.slave);
         
-        let obj = new ModelInternalTesting(); 
-        obj.email = "mavani"
-        obj.time= new Date()
-        obj.slave =topicToUse
-        obj.cmd =currentCmd
-        
-        ModelInternalTesting.save()
-            .then(saveDoc => {
-                // Handle the saved document
-                console.log(saveDoc);
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-            });
+        let obj = new ModelInternalTesting({
+            "email":"mavani",
+            time: new Date(),
+            slave:topicToUse,
+            cmd :currentCmd
+        })
+        obj.save(function(err,result){
+
+        })
     }
 }
