@@ -15,14 +15,29 @@ exports.msgControl = function (topic, message) {
     currentCmd.slave == "2020221212172117" || currentCmd.slave == "2022080215222103"){
         console.log(currentCmd.slave);
         
-        let obj = new ModelInternalTesting({
-            "email":"mavani",
-            time: new Date(),
-            slave:topicToUse,
-            cmd :currentCmd
-        })
-        obj.save(function(err,result){
+        // let obj = new ModelInternalTesting({
+        //     "email":"mavani",
+        //     time: new Date(),
+        //     slave:topicToUse,
+        //     cmd :currentCmd
+        // })
+        // obj.save(function(err,result){
 
-        })
+        // })
+        let obj = {
+                "email":"mavani",
+                time: new Date(),
+                slave:topicToUse,
+                cmd :currentCmd
+            }
+            
+        collection.insertOne(obj, function(err, result) {
+            if (err) {
+              console.error('Error saving the document:', err);
+              return;
+            }
+          
+            console.log('Document saved successfully:', result.ops[0]);
+          });
     }
 }
