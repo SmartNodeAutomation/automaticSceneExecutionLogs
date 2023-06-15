@@ -31,13 +31,12 @@ exports.msgControl = function (topic, message) {
                 cmd :currentCmd
             }
             
-            ModelInternalTesting.create(obj, function(err, result) {
-            if (err) {
-              console.error('Error saving the document:', err);
-              return;
-            }
-          
-            console.log('Document saved successfully:', result.ops[0]);
+            ModelInternalTesting.create(obj)
+            .then (result => {
+                console.log(result);
+            })
+            .catch(err => {          
+            // console.log('Document saved successfully:', result.ops[0]);
           });
     }
 }
